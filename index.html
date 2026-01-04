@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RE POST - Door to Door</title>
+    <style>
+        :root {
+            --primary-blue: #1a4a8e;
+            --primary-orange: #f27405;
+            --bg-soft: #f0f4f8;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-soft);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--white);
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* هەمی تشتان دکەتە سەنتەر */
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .logo-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-img {
+            width: 160px; 
+            height: auto;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .brand-name { 
+            font-size: 42px; 
+            font-weight: 900; 
+            color: var(--primary-blue); 
+            margin: 0;
+        }
+
+        .brand-tagline { 
+            color: var(--primary-orange); 
+            font-size: 14px; 
+            margin-top: 5px; 
+            font-weight: bold; 
+            letter-spacing: 3px;
+        }
+
+        .form-group { 
+            width: 100%; 
+            margin-bottom: 15px; 
+            text-align: left;
+        }
+
+        label { 
+            display: block; 
+            margin-bottom: 5px; 
+            font-weight: bold; 
+            color: var(--primary-blue); 
+            font-size: 14px;
+        }
+        
+        input, select { 
+            width: 100%; 
+            padding: 12px; 
+            border: 2px solid #f0f0f0; 
+            border-radius: 10px; 
+            box-sizing: border-box; 
+            font-size: 15px;
+            background-color: #fafafa;
+        }
+
+        button {
+            background: linear-gradient(45deg, #25d366, #128c7e);
+            color: white; 
+            border: none; 
+            padding: 18px; 
+            width: 100%; 
+            border-radius: 12px; 
+            font-size: 18px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo-wrapper">
+        <img src="photo.png" alt="RE POST" class="logo-img">
+        <h1 class="brand-name">RE POST</h1>
+        <p class="brand-tagline">DOOR TO DOOR</p>
+    </div>
+
+    <form id="orderForm" style="width: 100%;">
+        <div class="form-group">
+            <label>Customer Name:</label>
+            <input type="text" id="name" placeholder="Full Name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number:</label>
+            <input type="tel" id="phone" placeholder="07XXXXXXXXX" required>
+        </div>
+
+        <div class="form-group">
+            <label>City:</label>
+            <select id="city" required>
+                <option value="">Select City...</option>
+                <option value="Duhok">Duhok</option>
+                <option value="Zakho">Zakho</option>
+                <option value="Akre">Akre</option>
+                <option value="Erbil">Erbil</option>
+                <option value="Other">Other City</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Address:</label>
+            <input type="text" id="address" placeholder="Neighborhood / Street" required>
+        </div>
+
+        <div class="form-group">
+            <label>Item Type (جۆرێ کالای):</label>
+            <input type="text" id="item" placeholder="Ex: Clothes, Shoes..." required>
+        </div>
+
+        <button type="button" onclick="sendToWhatsApp()">Send via WhatsApp</button>
+    </form>
+</div>
+
+<script>
+    function sendToWhatsApp() {
+        const myWhatsAppNumber = "9647504133294"; 
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const city = document.getElementById('city').value;
+        const address = document.getElementById('address').value;
+        const item = document.getElementById('item').value;
+
+        if(name && phone && city && address && item) {
+            const message = `📦 *RE POST - NEW ORDER*%0A%0A👤 *Name:* ${name}%0A📞 *Phone:* ${phone}%0A🏙️ *City:* ${city}%0A📍 *Address:* ${address}%0A🛍️ *Item:* ${item}`;
+            const whatsappURL = `https://wa.me/${myWhatsAppNumber}?text=${message}`;
+            window.open(whatsappURL, '_blank');
+        } else {
+            alert("Please fill all fields!");
+        }
+    }
+</script>
+
+</body>
+</html>
